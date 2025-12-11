@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <body>
+            <h1>Dirly</h1>
+
+            <%= form_for @dirly do |d| %>
+                <div class="field">
+                    <%= d.label :body %>
+                    <%= d.text_field :body, :size => 140 %>
+                </div>
+                <%= d.submit "記録する" %>
+            <% end %>
+
+
+
+
+        </body>
+
+
+
+
+    </head>
+</html>
