@@ -1,0 +1,13 @@
+<h1>あなたの体調に合わせたレシピ</h1>
+
+<% if @recipes.any? %>
+  <% @recipes.each do |recipe| %>
+    <div class="mb-2">
+      <strong><%= recipe[:name] %></strong>
+      <a href="<%= recipe[:url] %>" target="_blank">レシピを見る</a>
+    </div>
+  <% end %>
+<% else %>
+  <p>体調に合うレシピはありません。</p>
+<% end %>
+
