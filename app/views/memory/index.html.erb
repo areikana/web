@@ -3,14 +3,19 @@
     <head>
         <body>
             <h1>Dirly</h1>
+            <h1>日記を書く</h1>
 
-            <%= form_for @dirly do |d| %>
-                <div class="field">
-                    <%= d.label :body %>
-                    <%= d.text_field :body, :size => 140 %>
-                </div>
-                <%= d.submit "記録する" %>
+            <%= form_with model: @memory, url: memory_index_path, local: true do |m| %>
+
+                <%= m.label :body, "内容" %><br>
+                <%= m.text_area :body %><br>
+                <%= m.submit "記録する" %>
             <% end %>
+
+            <hr>
+
+            <%= link_to "これまでの記録を見る", preview_memory_index_path %>
+
         </body>
     </head>
 </html>

@@ -1,0 +1,19 @@
+<h1>記録</h1>
+
+<p>
+  <strong>日記:</strong><br>
+  <%= @memory.body %>
+</p>
+
+<hr>
+
+<h2>これまでの記録</h2>
+
+<% @memories.each do |memory| %>
+  <p>
+    <%= memory.body %><br>
+    
+  </p>
+<% end %>
+
+<%= link_to "戻る", memory_index_path %>
