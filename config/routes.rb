@@ -13,10 +13,14 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :dirlies
+  resources :memory, only: [:index]
+
+
 
 
   get "dirly" => "memory#index"
+  get "users/home" => "users#home"
 
 
-  root "memory#index"
+  root "users#home"
 end
