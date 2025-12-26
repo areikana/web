@@ -1,0 +1,25 @@
+<h1>今日の体調・気分を選んでください</h1>
+
+<%= form_with model: @cook do |f| %>
+  <% moods = [
+    "疲れた", "頭痛い", "眠い", "ストレスあり", "やる気なし",
+    "イライラ", "食欲低下", "だるい", "集中できない", "元気",
+    "肩こり", "胃もたれ", "風邪気味", "眠れない", "疲れ目",
+    "寒気", "やる気低下", "気分落ち込み", "不安", "冷え性",
+    "肩・首のこり", "やる気回復", "甘いもの食べたい", "軽く食べたい",
+    "お腹すいた", "やる気満々", "甘いもの控えたい", "疲労感", "頭重い", "肩こり2"
+  ] %>
+
+  <% moods.each do |mood| %>
+    <div class="mb-3">
+      <%= f.radio_button :health, mood %>
+      <%= f.label :health, mood, value: mood %>
+
+      <label>度合い</label>
+      <input type="range" name="cook[conditions][<%= mood %>][level]" min="0" max="10" step="1" value="0">
+      <span>0</span>
+    </div>
+  <% end %>
+
+  <%= f.submit "決定" %>
+<% end %>
