@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_11_235110) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_26_034729) do
   create_table "dirlies", force: :cascade do |t|
     t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "memories", force: :cascade do |t|
+    t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
