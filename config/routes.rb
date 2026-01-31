@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post "cooks", to: "cooks#create"
   get "cooks/:id", to: "cooks#show", as: :cook
 
+  resources :records
 
   root "users#home"
 end

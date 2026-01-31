@@ -10,16 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_31_023143) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_31_063138) do
+  create_table "calorie_items", force: :cascade do |t|
+    t.integer "calorie_record_id", null: false
+    t.float "calories_per_unit"
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.float "quantity"
+    t.string "unit"
+    t.datetime "updated_at", null: false
+    t.index ["calorie_record_id"], name: "index_calorie_items_on_calorie_record_id"
+  end
+
+  create_table "calorie_records", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.date "date"
+    t.string "rec_id"
+    t.float "total_calories"
+    t.datetime "updated_at", null: false
+    t.string "user_id_str"
+    t.string "user_key"
+  end
+
   create_table "cooks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "health"
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "dirlies", force: :cascade do |t|
-    t.text "body"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
@@ -28,4 +43,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_023143) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "records", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.date "date"
+    t.string "meal_type"
+    t.text "memo"
+    t.string "rec_id"
+    t.float "total_calories"
+    t.datetime "updated_at", null: false
+    t.string "user_id"
+  end
+
+  add_foreign_key "calorie_items", "calorie_records"
 end

@@ -1,0 +1,75 @@
+<div class="container">
+  <h1>食事記録一覧</h1>
+
+  <div class="actions" style="margin-bottom: 20px;">
+    <%= link_to '＋ 新しく記録する', new_record_path, class: "btn-new" %>
+    <%= link_to 'HOME', root_path, class: "nav-item", style: "margin-left: 10px;" %>
+  </div>
+
+
+  <section class="summary-section">
+    <h2>📅 日ごとの合計カロリー</h2>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>合計カロリー</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @daily_calories.each do |date, total| %>
+          <tr>
+            <td><strong><%= date.strftime("%Y年%m月%d日") %></strong></td>
+            <td>
+              <span style="<%= total > 2500 ? 'color: #e64a19; font-weight: bold;' : '' %>">
+                <%= total %> kcal
+              </span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <hr style="margin: 40px 0; border: 1px dashed #ffccbc;">
+
+
+  <section class="detail-section">
+    <h2>📝 全ての入力データ（履歴）</h2>
+    <table class="detail-table">
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>区分</th>
+          <th>食べたもの</th> 
+          <th>カロリー</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @records.each do |record| %>
+          <tr>
+            
+            <td><strong><%= record.date.to_date.strftime("%m/%d") %></strong></td>
+           
+            <td>
+              <span class="meal-tag"><%= record.meal_type.presence || "未設定" %></span>
+            </td>
+
+            <td style="text-align: left;">
+              <%= record.memo.presence || "（メモなし）" %>
+            </td>
+            
+            <td><%= record.total_calories %> kcal</td>
+            
+            <td class="ops">
+              <%= link_to '詳細', record_path(record) %> |
+              <%= link_to '編集', edit_record_path(record) %> |
+              <%= button_to "削除", record_path(record), method: :delete, form: { data: { turbo_confirm: "本当に消しますか？" } }, class: "btn-delete" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>

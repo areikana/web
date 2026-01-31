@@ -8,3 +8,66 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+ /* app/assets/stylesheets/application.css */
+
+body {
+  background-color: #fff9f0; /* 優しいクリーム色 */
+  color: #5d4037; /* 濃い茶色（文字） */
+  font-family: 'Hiragino Maru Gothic ProN', 'Meiryo', sans-serif; /* 丸みのあるフォント */
+  margin: 40px;
+}
+
+h1 {
+  border-bottom: 2px dashed #ffab91; /* オレンジの点線 */
+  padding-bottom: 10px;
+  color: #e64a19;
+}
+
+/* テーブルをノート風にする */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background-color: #ffccbc;
+  padding: 15px;
+  text-align: left;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+/* ボタンを可愛くする */
+.btn-new, .nav-item, input[type="submit"] {
+  display: inline-block;
+  background-color: #ffab91;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px #d84315;
+  transition: 0.2s;
+}
+
+.btn-new:active, input[type="submit"]:active {
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+.meal-tag {
+  background: #fff9c4;
+  padding: 3px 10px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  color: #795548;
+  border: 1px solid #ffe082;
+}
