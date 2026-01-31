@@ -1,0 +1,33 @@
+<div class="diary-container">
+  <div class="diary-header">
+    <h1>日記の詳細</h1>
+  </div>
+
+  <div class="diary-detail">
+    <div class="diary-detail-date">
+      <%= @memory.created_at.strftime("%Y年%-m月%-d日（%a） %H:%M") %>
+    </div>
+    
+    <% if @memory.body.present? %>
+      <div style="margin-bottom: 20px;">
+        <h3 style="font-size: 16px; color: #1a4d7a; margin-bottom: 10px;">📝 日記</h3>
+        <div class="diary-detail-body">
+          <%= simple_format(@memory.body) %>
+        </div>
+      </div>
+    <% end %>
+    
+    <% if @memory.exercise.present? %>
+      <div>
+        <h3 style="font-size: 16px; color: #1a4d7a; margin-bottom: 10px;">💪 運動記録</h3>
+        <div class="diary-detail-body">
+          <%= simple_format(@memory.exercise) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div style="padding: 15px; display: flex; gap: 10px;">
+    <%= link_to "一覧に戻る", preview_memory_index_path, class: "link-btn", style: "flex: 1;" %>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<h1>おすすめメニュー</h1>
+
+<p>体調：<%= params[:cook][:health] %></p>
+<p>つらさ：<%= params[:cook][:level] == "3" ? "MAX" : params[:cook][:level] %></p>
+
+<hr>
+
+<% if @recipe %>
+  <p>
+    🍽 <strong><%= @recipe[:name] %></strong><br>
+    <a href="<%= @recipe[:url] %>" target="_blank">レシピを見る</a>
+  </p>
+<% else %>
+  <p>該当するメニューがありません</p>
+<% end %>

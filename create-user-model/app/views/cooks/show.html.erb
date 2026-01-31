@@ -1,0 +1,16 @@
+<h1>あなたの体調まとめ</h1>
+
+<% @conditions.each do |mood, level| %>
+  <p>
+    <strong><%= mood %></strong>：
+    <%= level.to_i == 3 ? "MAX" : level %>
+  </p>
+<% end %>
+
+<hr>
+
+<% if @conditions.values.map(&:to_i).max == 3 %>
+  <p>今日はかなりしんどそう。消化にやさしい料理がおすすめ🍲</p>
+<% else %>
+  <p>比較的安定してそう。バランスの良い食事を🍚</p>
+<% end %>
