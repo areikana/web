@@ -1,0 +1,27 @@
+<h1>健康管理アプリ</h1>
+<p>毎日の食事や運動の記録、日記を通じて心と体の健康を楽しく管理できるアプリ</p>
+
+<% if logged_in? %>
+  <p>ようこそ、<%= current_user.login %> さん</p>
+
+  <!-- チーム側の記録ページへ（後で実装される想定） -->
+  <ul>
+    <li><%= link_to "カロリー記録", "/calories/new" %></li>
+    <li><%= link_to "日記/運動記録", "/memory/new" %></li>
+    <li><%= link_to "料理提案", "/cooks/new" %></li>
+  </ul>
+
+  <%= button_to "ログアウト", logout_path, method: :delete %>
+<% else %>
+  <ul>
+    <li><%= link_to "ユーザー登録", new_user_path %></li>
+    <li><%= link_to "ログイン", login_path %></li>
+  </ul>
+<% end %>
+
+<% if flash[:notice] %>
+  <p style="color: green;"><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>

@@ -1,0 +1,41 @@
+<h2>ユーザー登録</h2>
+
+<% if @user.errors.any? %>
+  <div style="color:red;">
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <p style="color:red;"><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_with model: @user, url: users_path do |f| %>
+  <div>
+    <%= f.label :user_id, "ユーザーID（英数字10〜20文字）" %><br>
+    <%= f.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= f.label :login, "ログイン名（英数字10〜15文字）" %><br>
+    <%= f.text_field :login %>
+  </div>
+
+  <div>
+    <%= f.label :password, "パスワード" %><br>
+    <%= f.password_field :password %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation, "パスワード（確認）" %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <%= f.submit "登録" %>
+<% end %>
+
+<p><%= link_to "ログインはこちら", login_path %></p>

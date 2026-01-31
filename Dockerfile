@@ -1,9 +1,9 @@
-# syntax=docker/dockerfile-upstream:master
+# syntax=docker/dockerfile:1
 # check=error=true
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
-# docker build -t web_app .
-# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name web_app web_app
+# docker build -t create_user_model1 .
+# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name create_user_model1 create_user_model1
 
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 

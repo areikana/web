@@ -1,0 +1,14 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+    <aside class="col-md-4">
+        <section class="user_info">
+          <h1>
+            <%# Gravatarと名前の表⽰ (7.1.4で実装される) %>
+            <%= @user.name %>
+          </h1>
+        </section>
+    </aside>
+    <div class="col-md-8">
+      <%# 最終的にはここにマイクロポストの⼀覧が表⽰される [2] %>
+    </div>
+</div>

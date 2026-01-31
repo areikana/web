@@ -1,0 +1,21 @@
+<% content_for :title, "トップ" %>
+
+<h1 class="mb-3">健康管理アプリ</h1>
+<p class="text-muted">毎日の食事や運動の記録、日記を通じて心と体の健康を楽しく管理できます。</p>
+
+<% if logged_in? %>
+  <div class="alert alert-success">
+    ようこそ、<strong><%= current_user.login %></strong> さん！
+  </div>
+
+  <div class="d-flex gap-2">
+    <%= button_to "ログアウト", logout_path, method: :delete, class: "btn btn-outline-danger" %>
+    <!-- ここは他担当ページに後でつなぐ -->
+    <%= link_to "記録ページへ（仮）", "/calories/new", class: "btn btn-primary" %>
+  </div>
+<% else %>
+  <div class="d-flex gap-2">
+    <%= link_to "ユーザー登録", new_user_path, class: "btn btn-primary" %>
+    <%= link_to "ログイン", login_path, class: "btn btn-outline-primary" %>
+  </div>
+<% end %>
