@@ -1,13 +1,16 @@
-<h1>あなたの体調に合わせたレシピ</h1>
+<h1>あなたの体調まとめ</h1>
 
-<% if @recipes.any? %>
-  <% @recipes.each do |recipe| %>
-    <div class="mb-2">
-      <strong><%= recipe[:name] %></strong>
-      <a href="<%= recipe[:url] %>" target="_blank">レシピを見る</a>
-    </div>
-  <% end %>
-<% else %>
-  <p>体調に合うレシピはありません。</p>
+<% @conditions.each do |mood, level| %>
+  <p>
+    <strong><%= mood %></strong>：
+    <%= level.to_i == 3 ? "MAX" : level %>
+  </p>
 <% end %>
 
+<hr>
+
+<% if @conditions.values.map(&:to_i).max == 3 %>
+  <p>今日はかなりしんどそう。消化にやさしい料理がおすすめ🍲</p>
+<% else %>
+  <p>比較的安定してそう。バランスの良い食事を🍚</p>
+<% end %>

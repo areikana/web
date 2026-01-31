@@ -1,25 +1,63 @@
 <h1>今日の体調・気分を選んでください</h1>
 
-<%= form_with model: @cook do |f| %>
+<%= form_with model: @cook, url: cooks_path, method: :post, local: true do |f| %>
+
   <% moods = [
-    "疲れた", "頭痛い", "眠い", "ストレスあり", "やる気なし",
-    "イライラ", "食欲低下", "だるい", "集中できない", "元気",
-    "肩こり", "胃もたれ", "風邪気味", "眠れない", "疲れ目",
-    "寒気", "やる気低下", "気分落ち込み", "不安", "冷え性",
-    "肩・首のこり", "やる気回復", "甘いもの食べたい", "軽く食べたい",
-    "お腹すいた", "やる気満々", "甘いもの控えたい", "疲労感", "頭重い", "肩こり2"
+    "頭痛い",
+    "ストレス",
+    "やる気なし",
+    "食欲低下",
+    "集中できない",
+    "胃もたれ",
+    "風邪気味",
+    "眠れない",
+    "冷え性",
+    "肩・首のこり"
   ] %>
 
   <% moods.each do |mood| %>
     <div class="mb-3">
-      <%= f.radio_button :health, mood %>
-      <%= f.label :health, mood, value: mood %>
+      <!-- 体調は1つだけ -->
+      <%= f.radio_button :health, mood, class: "mood-radio", data: { mood: mood } %>
+      <%= f.label :health, mood %><br>
 
-      <label>度合い</label>
-      <input type="range" name="cook[conditions][<%= mood %>][level]" min="0" max="10" step="1" value="0">
-      <span>0</span>
+      <input type="range"
+             name="cook[level]"
+             min="0"
+             max="3"
+             step="1"
+             value="0"
+             disabled
+             class="slider"
+             data-mood="<%= mood %>">
+
+      <span class="value">0</span>
     </div>
   <% end %>
 
   <%= f.submit "決定" %>
 <% end %>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const radios = document.querySelectorAll(".mood-radio");
+  const sliders = document.querySelectorAll(".slider");
+
+  radios.forEach(radio => {
+    radio.addEventListener("change", () => {
+      sliders.forEach(slider => {
+        slider.disabled = slider.dataset.mood !== radio.value;
+        slider.value = 0;
+        slider.nextElementSibling.textContent = "0";
+      });
+    });
+  });
+
+  sliders.forEach(slider => {
+    slider.addEventListener("input", () => {
+      slider.nextElementSibling.textContent =
+        slider.value == 3 ? "MAX" : slider.value;
+    });
+  });
+});
+</script>

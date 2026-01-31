@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   get "dirly" => "memory#index"
   get "users/home" => "users#home"
 
+  get "cooks/new", to: "cooks#new", as: :new_cook
+  post "cooks", to: "cooks#create"
+  get "cooks/:id", to: "cooks#show", as: :cook
+
 
   root "users#home"
 end
