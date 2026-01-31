@@ -12,14 +12,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :dirlies
-  resources :memory, only: [:index]
-
-
-
-
-  get "dirly" => "memory#index"
-  get "users/home" => "users#home"
+  resources :memory, only: [:index, :show, :create] do
+    collection do
+      get :preview
+    end
+  end
 
   get "cooks/new", to: "cooks#new", as: :new_cook
   post "cooks", to: "cooks#create"

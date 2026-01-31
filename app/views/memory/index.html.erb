@@ -1,16 +1,56 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <body>
-            <h1>Dirly</h1>
+<div class="diary-home-container">
+  <div class="diary-home-header">
+    <h1 style="margin: 0; font-size: 24px; font-weight: 500; color: #1a4d7a;">📔 日記</h1>
+  </div>
 
-            <%= form_for @dirly do |d| %>
-                <div class="field">
-                    <%= d.label :body %>
-                    <%= d.text_field :body, :size => 140 %>
-                </div>
-                <%= d.submit "記録する" %>
-            <% end %>
-        </body>
-    </head>
-</html>
+  <div class="diary-form-container">
+    <h2 style="font-size: 18px; color: #1a4d7a; margin: 0 0 20px 0; font-weight: 600;">今日の出来事を記録しよう</h2>
+    
+    <%= form_with model: @memory, url: memory_index_path, local: true do |m| %>
+      <div style="margin-bottom: 25px;">
+        <label style="display: block; font-size: 15px; color: #1a4d7a; font-weight: 600; margin-bottom: 10px;">📝 日記</label>
+        <%= m.text_area :body, 
+            placeholder: "今日はどんな日でしたか？",
+            style: "width: 100%; height: 300px; min-height: 300px; padding: 20px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 16px; line-height: 1.8; resize: vertical; box-sizing: border-box; font-family: inherit; color: #333;" %>
+      </div>
+      
+      <div style="margin-bottom: 25px;">
+        <label style="display: block; font-size: 15px; color: #1a4d7a; font-weight: 600; margin-bottom: 10px;">💪 運動記録</label>
+        <%= m.text_area :exercise, 
+            placeholder: "今日の運動内容を記録しましょう（例：ジョギング30分、筋トレ、ヨガなど）",
+            style: "width: 100%; height: 200px; min-height: 200px; padding: 20px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 16px; line-height: 1.8; resize: vertical; box-sizing: border-box; font-family: inherit; color: #333;" %>
+      </div>
+      
+      <%= m.submit "記録する", class: "diary-submit-btn" %>
+    <% end %>
+  </div>
+
+  <%= link_to "これまでの記録を見る 📖", preview_memory_index_path, class: "diary-view-all-btn" %>
+  
+  <div class="diary-home-bottom"></div>
+</div>
+
+<style>
+  /* プレースホルダーの色を暗くする */
+  textarea::placeholder {
+    color: #666 !important;
+    opacity: 1;
+  }
+  
+  textarea::-webkit-input-placeholder {
+    color: #666 !important;
+  }
+  
+  textarea::-moz-placeholder {
+    color: #666 !important;
+  }
+  
+  textarea:-ms-input-placeholder {
+    color: #666 !important;
+  }
+  
+  textarea:focus {
+    outline: none;
+    border-color: #4fc3c8 !important;
+  }
+</style>

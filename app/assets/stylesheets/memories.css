@@ -1,0 +1,278 @@
+/* ホーム画面全体のコンテナ */
+.diary-home-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* ホーム画面用のヘッダー */
+.diary-home-header {
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.diary-home-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+  color: #1a4d7a;
+}
+
+/* フォームコンテナ */
+.diary-form-container {
+  background-color: white;
+  margin: 20px 0 0 0;
+  padding: 40px 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.diary-form-container h2 {
+  font-size: 18px;
+  color: #1a4d7a;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+}
+
+/* テキストエリアを大きく */
+.diary-form-container textarea {
+  width: 100%;
+  min-height: 500px;
+  height: 500px;
+  padding: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.8;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.3s;
+  color: #333;
+}
+
+.diary-form-container textarea:focus {
+  outline: none;
+  border-color: #4fc3c8;
+}
+
+.diary-form-container textarea::placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+.diary-form-container textarea::-webkit-input-placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+.diary-form-container textarea::-moz-placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+.diary-form-container textarea:-ms-input-placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+/* 送信ボタン */
+.diary-submit-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  background: linear-gradient(135deg, #4fc3c8 0%, #3fa8b4 100%);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(79, 195, 200, 0.3);
+}
+
+.diary-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(79, 195, 200, 0.4);
+}
+
+.diary-submit-btn:active {
+  transform: translateY(0);
+}
+
+/* 記録を見るボタン */
+.diary-view-all-btn {
+  display: block;
+  margin: 20px 0 0 0;
+  padding: 18px;
+  background-color: white;
+  color: #4fc3c8;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  border: 2px solid #4fc3c8;
+}
+
+.diary-view-all-btn:hover {
+  background-color: #4fc3c8;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 195, 200, 0.3);
+}
+
+/* 下部の余白 */
+.diary-home-bottom {
+  padding-bottom: 30px;
+}
+
+/* 一覧画面 */
+.diary-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.diary-header {
+  background-color: white;
+  padding: 15px 20px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.diary-header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.diary-list {
+  padding: 0 0 80px 0;
+}
+
+.month-divider {
+  background-color: #f5f5f5;
+  padding: 8px 20px;
+  font-size: 13px;
+  color: #888;
+}
+
+.diary-card {
+  display: flex;
+  align-items: flex-start;
+  background-color: white;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s;
+}
+
+.diary-card:hover {
+  background-color: #fafafa;
+}
+
+.diary-card-date {
+  flex-shrink: 0;
+  width: 50px;
+  text-align: center;
+  margin-right: 15px;
+}
+
+.date-day {
+  font-size: 28px;
+  font-weight: 300;
+  color: #4fc3c8;
+  line-height: 1;
+}
+
+.date-weekday {
+  font-size: 12px;
+  color: #4fc3c8;
+  margin-top: 2px;
+}
+
+.date-time {
+  font-size: 11px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.diary-card-content {
+  flex-grow: 1;
+}
+
+.diary-card-content p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.fab-button {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 100;
+}
+
+.fab-button a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background-color: #4fc3c8;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.fab-button a:hover {
+  transform: scale(1.1);
+}
+
+.link-btn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  margin: 20px;
+  background-color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #4fc3c8;
+}
+
+/* 詳細ページ */
+.diary-detail {
+  background-color: white;
+  margin: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.diary-detail-date {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.diary-detail-body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+}
