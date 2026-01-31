@@ -3,18 +3,17 @@ class MemoryController < ApplicationController
     @memory = Memory.new
   end
 
-  # 一覧専用
-  def preview
-    @memories = Memory.all
-  end
-
   def create
     @memory = Memory.new(memory_params)
     if @memory.save
-      redirect_to preview_memory_index_path
+      redirect_to preview_memory_index_path, notice: "記録しました"
     else
       render :index
     end
+  end
+
+  def preview
+    @memories = Memory.all.order(created_at: :desc)
   end
 
   def show
@@ -24,7 +23,6 @@ class MemoryController < ApplicationController
   private
 
   def memory_params
-    params.require(:memory).permit(:body)
+    params.require(:memory).permit(:body, :exercise)
   end
 end
-

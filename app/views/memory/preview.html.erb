@@ -1,12 +1,42 @@
-<h1>これまでの記録</h1>
+<div class="diary-container">
+  <div class="diary-header">
+    <h1>日記</h1>
+  </div>
 
-<% @memories.each do |memory| %>
-  <p>
-    <%= memory.body %><br>
+  <div class="diary-list">
+    <% @memories.group_by { |m| m.created_at.strftime("%Y年%-m月") }.each do |month, memories| %>
+      <div class="month-divider">
+        <%= month %>
+      </div>
+      
+      <% memories.reverse.each do |memory| %>
+        <%= link_to memory_path(memory), class: "diary-card" do %>
+          <div class="diary-card-date">
+            <div class="date-day"><%= memory.created_at.day %></div>
+            <div class="date-weekday"><%= %w[日 月 火 水 木 金 土][memory.created_at.wday] %></div>
+            <div class="date-time"><%= memory.created_at.strftime("%H:%M") %></div>
+          </div>
+          
+          <div class="diary-card-content">
+            <% if memory.body.present? %>
+              <p style="margin: 0 0 8px 0;"><strong>📝</strong> <%= truncate(memory.body, length: 50) %></p>
+            <% end %>
+            <% if memory.exercise.present? %>
+              <p style="margin: 0; color: #666;"><strong>💪</strong> <%= truncate(memory.exercise, length: 50) %></p>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
 
-  </p>
-<% end %>
+  <div class="fab-button">
+    <%= link_to memory_index_path do %>
+      ✎
+    <% end %>
+  </div>
 
-<hr>
-
-<%= link_to "戻る", memory_index_path %>
+  <div style="padding: 15px;">
+    <%= link_to "戻る", memory_index_path, class: "link-btn" %>
+  </div>
+</div>
