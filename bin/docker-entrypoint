@@ -6,8 +6,8 @@ if [ -z "${LD_PRELOAD+x}" ]; then
     export LD_PRELOAD
 fi
 
-# Always run database preparation (migrations)
-echo "Running database migrations..."
-./bin/rails db:prepare
+# Always run database setup
+echo "==> Setting up database..."
+./bin/rails db:create db:migrate || ./bin/rails db:migrate
 
 exec "${@}"
