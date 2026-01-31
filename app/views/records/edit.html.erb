@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>食事記録の編集</h1>
+
+  <%= form_with model: @record, local: true do |f| %>
+    <div class="field">
+      <%= f.label :date, "日付" %><br>
+      <%= f.date_field :date %>
+    </div>
+
+    <div class="field">
+      <%= f.label :meal_type, "食事タイプ" %><br>
+      <%= f.select :meal_type, ["朝食", "昼食", "夕食", "間食"] %>
+    </div>
+
+    <div class="field">
+      <%= f.label :total_calories, "合計カロリー (kcal)" %><br>
+      <%= f.number_field :total_calories %>
+    </div>
+
+    <div class="field">
+      <%= f.label :memo, "メモ" %><br>
+      <%= f.text_area :memo %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "更新する", class: "btn-update" %>
+    </div>
+  <% end %>
+
+  <br>
+  <%= link_to "詳細に戻る", record_path(@record) %> |
+  <%= link_to "一覧に戻る", records_path %>
+</div>

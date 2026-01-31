@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>食事記録の詳細</h1>
+
+  <div class="record-details">
+    <p><strong>日付:</strong> <%= @record.date %></p>
+    <p><strong>食事タイプ:</strong> <%= @record.meal_type %></p>
+    <p><strong>摂取カロリー:</strong> <%= @record.total_calories %> kcal</p>
+    <p><strong>メモ:</strong> <%= @record.memo %></p>
+  </div>
+
+  <div class="actions">
+    <%= link_to "編集する", edit_record_path(@record), class: "btn-edit" %> |
+    <%= link_to "一覧に戻る", records_path, class: "btn-back" %> |
+   <%= button_to "削除", record_path(@record), method: :delete, form: { data: { turbo_confirm: "本当に消しますか？" } }, class: "btn-delete" %>
+  </div>
+</div>

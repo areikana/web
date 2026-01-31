@@ -1,0 +1,90 @@
+<div class="calorie-calc-container">
+  <h2>カロリー計算</h2>
+
+  <div class="input-section">
+    <input type="text" id="food-name" placeholder="食品名入力">
+    <select id="meal-type">
+      <option value="朝食">朝食</option>
+      <option value="昼食">昼食</option>
+      <option value="夕食">夕食</option>
+      <option value="間食">間食</option>
+    </select>
+    <input type="number" id="food-calorie" placeholder="カロリー(kcal)">
+    <button type="button" onclick="addFoodItem()">決定</button>
+  </div>
+
+  <table border="1" style="width:100%; margin-top: 20px;">
+    <thead>
+      <tr>
+        <th>食品</th>
+        <th>カロリー (kcal)</th>
+      </tr>
+    </thead>
+    <tbody id="food-list-body">
+      
+    </tbody>
+  </table>
+
+  <div class="total-section">
+    <p>合計カロリー： <span id="display-total">0</span> kcal</p>
+  </div>
+
+  <hr>
+
+  
+  <%= form_with(model: @record, url: records_path, local: true) do |f| %>
+
+    <%= f.hidden_field :meal_type, id: "hidden-meal-type" %>
+    <div style="margin-top: 15px;">
+      <%= f.label :memo, "何を食べた？（メモ）" %><br>
+      <%= f.text_area :memo, placeholder: "例：おにぎり、唐揚げ、ケーキなど", rows: 3, style: "width: 100%; border-radius: 10px; border: 1px solid #ffccbc; padding: 10px;" %>
+    </div>
+
+
+    <%= f.hidden_field :total_calories, id: "hidden-total-calories", value: 0 %>
+
+    <div style="margin-top: 20px;">
+      <%= f.submit "保存", class: "btn-new" %>
+    </div>
+  <% end %>
+  
+
+  <div class="nav-links" style="margin-top: 30px;">
+    <%= link_to "HOME", root_path, class: "btn-new" %>
+    <%= link_to "一覧へ戻る", records_path, class: "btn-new" %>
+  </div>
+</div>
+
+<script>
+  let total = 0;
+
+  function addFoodItem() {
+    const name = document.getElementById('food-name').value;
+    const cal = parseFloat(document.getElementById('food-calorie').value) || 0;
+    const mealType = document.getElementById('meal-type').value;
+
+    if (name === "") return;
+    
+    document.getElementById('hidden-meal-type').value = mealType;
+    // 1. テーブルに行を追加
+    const tbody = document.getElementById('food-list-body');
+    const row = `<tr><td>${name}</td><td>${cal}</td></tr>`;
+    tbody.insertAdjacentHTML('beforeend', row);
+
+    // 2. 合計を更新
+    total += cal;
+    document.getElementById('display-total').innerText = total;
+    document.getElementById('hidden-total-calories').value = total;
+
+    // 3. メモ欄（textarea）を探して、食べ物の名前を自動で書き足す
+    const memoArea = document.querySelector('textarea[id$="_memo"]'); 
+    if (memoArea) {
+      // すでに何か書いてあれば「、」で区切り、なければそのまま入れる
+      memoArea.value += (memoArea.value ? "、" : "") + name;
+    }
+
+    // 4. 入力欄をクリア
+    document.getElementById('food-name').value = "";
+    document.getElementById('food-calorie').value = "";
+  }
+</script>
